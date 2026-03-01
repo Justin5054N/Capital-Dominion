@@ -1,0 +1,84 @@
+START
+
+INISIALISASI random
+
+REPEAT
+
+    TAMPILKAN menu
+    INPUT pilihan
+
+    IF pilihan bukan angka THEN
+        TAMPILKAN "Input harus angka"
+        LANJUT ke menu
+    ENDIF
+
+    IF pilihan = 1 THEN
+
+        INPUT namaPemain
+
+        DO
+
+            SET skor = 0
+            SET nyawa = 5
+            SET jumlahPertanyaan = 0
+            BUAT array used[50] dan isi FALSE
+
+            WHILE nyawa > 0 AND jumlahPertanyaan < 50 DO
+
+                SET index = angka acak 0–49
+
+                IF used[index] = TRUE THEN
+                    LANJUT ke iterasi berikutnya
+                ENDIF
+
+                SET used[index] = TRUE
+                TAMBAH jumlahPertanyaan + 1
+
+                TAMPILKAN pertanyaan negara[index]
+                INPUT jawaban
+
+                UBAH jawaban menjadi huruf kecil
+                UBAH jawabanBenar menjadi huruf kecil
+
+                IF jawaban = jawabanBenar THEN
+                    TAMBAH skor + 2
+                ELSE
+                    KURANGI nyawa - 1
+                    TAMPILKAN jawaban benar
+                ENDIF
+
+            ENDWHILE
+
+            TAMPILKAN "Game Over"
+            TAMPILKAN skor akhir
+
+            BACA highScore lama dari file jika ada
+
+            IF skor > highScore lama THEN
+                SIMPAN namaPemain dan skor ke file
+                TAMPILKAN "High Score Baru"
+            ENDIF
+
+            TANYA "Main lagi? (y/n)"
+            INPUT mainLagi
+
+        WHILE mainLagi = 'y' OR mainLagi = 'Y'
+
+    ELSE IF pilihan = 2 THEN
+
+        IF file highScore ada THEN
+            BACA nama dan skor
+            TAMPILKAN nama dan skor
+        ELSE
+            TAMPILKAN "Belum Ada High Score"
+        ENDIF
+
+    ELSE IF pilihan = 3 THEN
+        TAMPILKAN pesan keluar
+    ELSE
+        TAMPILKAN "Pilihan Tidak Valid"
+    ENDIF
+
+UNTIL pilihan = 3
+
+END
